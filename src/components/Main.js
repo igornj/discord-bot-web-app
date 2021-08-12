@@ -37,7 +37,7 @@ export default class Main extends Component {
     const url = process.env.PORT || 3001;
 
     axios
-      .post(`https://discord-bot-upload.herokuapp.com/${url}`, data, {})
+      .post(`https://discord-bot-upload.herokuapp.com/:${url}`, data, {})
       .then((res) => {
         console.log(res.statusText);
       })
