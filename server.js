@@ -28,8 +28,7 @@ app.post('/', upload.single('file'), async (req, res) => {
 });
 
 const port = process.env.PORT || 3001;
-console.log(process.env.PORT);
 
 app.listen(port, () => {
-  console.log(`App running on port: ${process.env.PORT}`);
+  console.log(`App running on port: ${port}`);
 });

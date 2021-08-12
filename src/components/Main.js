@@ -10,8 +10,6 @@ import axios from 'axios';
 
 import Form from './Form';
 
-require('dotenv').config();
-
 export default class Main extends Component {
   constructor(props) {
     super(props);
