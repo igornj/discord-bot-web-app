@@ -34,7 +34,7 @@ export default class Main extends Component {
     const data = new FormData();
     data.append('file', this.state.selectedFile);
 
-    const url = process.env.PORT || 3001;
+    const url = process.env.PORT || 80;
 
     axios
       .post(`https://discord-bot-upload.herokuapp.com/:${url}`, data, {})
