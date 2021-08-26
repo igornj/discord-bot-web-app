@@ -39,10 +39,10 @@ export default class Main extends Component {
     await axios
       .post('/', data, {})
       .then((res) => {
-        toast.success('Sua imagem foi enviada');
+        toast.success('Sua imagem foi enviada com sucesso.');
         console.log(res.statusText);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error('Houve algum erro ao enviar a imagem.'));
   }
 
   render() {
