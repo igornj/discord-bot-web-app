@@ -7,10 +7,9 @@
 /* eslint-disable react/state-in-constructor */
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
-import axios from './src/services/axios';
-import { port } from './server';
+import axios from '../services/axios';
 
-import Form from './src/components/Form';
+import Form from './Form';
 
 require('dotenv').config();
 
@@ -36,8 +35,9 @@ export default class Main extends Component {
     const data = new FormData();
     data.append('file', this.state.selectedFile);
 
+    const port = process.env.PORT || 3000;
     await axios
-      .post(`https://discord-bot-upload.herokuapp.com/${port}`, data, {})
+      .post(`/`, data, {})
       .then((res) => {
         toast.success('Sua imagem foi enviada com sucesso.');
         console.log(res.statusText);
