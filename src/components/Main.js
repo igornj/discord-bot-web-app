@@ -8,6 +8,7 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import axios from '../services/axios';
+import { port } from '../../server';
 
 import Form from './Form';
 
@@ -35,9 +36,8 @@ export default class Main extends Component {
     const data = new FormData();
     data.append('file', this.state.selectedFile);
 
-    const port = process.env.PORT || 3000;
     await axios
-      .post('/', data, {})
+      .post(`https://discord-bot-upload.herokuapp.com${port}`, data, {})
       .then((res) => {
         toast.success('Sua imagem foi enviada com sucesso.');
         console.log(res.statusText);
