@@ -25,7 +25,7 @@ async function uploadFile(file) {
     Body: fileStream,
     Key: `Upper_data_base/${file.originalname}`,
     ACL: 'public-read',
-    ContentType: 'image/',
+    ContentType: 'image/jpg',
   };
 
   return s3.upload(params).promise();
