@@ -37,7 +37,7 @@ export default class Main extends Component {
     data.append('file', this.state.selectedFile);
 
     await axios
-      .post(`https://discord-bot-upload.herokuapp.com${port}`, data, {})
+      .post(`https://discord-bot-upload.herokuapp.com/${port}`, data, {})
       .then((res) => {
         toast.success('Sua imagem foi enviada com sucesso.');
         console.log(res.statusText);
