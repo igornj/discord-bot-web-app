@@ -40,7 +40,7 @@ export default class Main extends Component {
       .post(port, data, {})
       .then((res) => {
         toast.success('Sua imagem foi enviada com sucesso.');
-        console.log(res.statusText);
+        console.log(`Post request made on port: ${port} - res.statusText`);
       })
       .catch((err) => toast.error('Houve algum erro ao enviar a imagem.'));
   }
