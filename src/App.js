@@ -9,8 +9,8 @@ function App() {
   return (
     <>
       <GlobalStyle />
+      <ToastContainer autoClose={3000} />
       <Routes />
-      <ToastContainer autoClose={3000} className="toast-container" />
     </>
   );
 }

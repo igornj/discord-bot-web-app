@@ -35,7 +35,6 @@ export default class Main extends Component {
     const data = new FormData();
     data.append('file', this.state.selectedFile);
 
-    const port = process.env.PORT || 3000;
     await axios
       .post('/', data, {})
       .then((res) => {
