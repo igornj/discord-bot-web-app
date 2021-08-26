@@ -37,10 +37,9 @@ export default class Main extends Component {
 
     const port = process.env.PORT || 3000;
     await axios
-      .post(port, data, {})
+      .post('/', data, {})
       .then((res) => {
         toast.success('Sua imagem foi enviada com sucesso.');
-        console.log(`Post request made on port: ${port} - res.statusText`);
       })
       .catch((err) => toast.error('Houve algum erro ao enviar a imagem.'));
   }
