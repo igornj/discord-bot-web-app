@@ -7,10 +7,10 @@
 /* eslint-disable react/state-in-constructor */
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
-import axios from '../services/axios';
-import { port } from '../../server';
+import axios from './src/services/axios';
+import { port } from './server';
 
-import Form from './Form';
+import Form from './src/components/Form';
 
 require('dotenv').config();
 
