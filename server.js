@@ -18,7 +18,7 @@ const upload = multer({ dest: 'uploads/' });
 app.post('/', upload.single('file'), async (req, res) => {
   const { file } = req;
   const result = await uploadFile(file);
-  console.log(result);
+  // console.log(result);
 
   if (res.status === 400) {
     res.send('error');
@@ -29,5 +29,5 @@ app.post('/', upload.single('file'), async (req, res) => {
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`App running on port: ${port} http://localhost:${port}/`);
+  console.log(`App running on port: ${port}`);
 });

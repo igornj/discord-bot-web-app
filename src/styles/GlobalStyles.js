@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import styled, { createGlobalStyle } from 'styled-components';
+import * as colors from '../config/color';
 
 export default createGlobalStyle`
 *{
@@ -23,6 +24,15 @@ button{
   border: none;
   cursor: pointer;
 }
+
+body .Toastify .Toastify__toast-container .Toastify__toast--success{
+  background: ${colors.successColor}
+}
+
+body .Toastify .Toastify__toast-container .Toastify__toast--success{
+  background: ${colors.errorColor}
+}
+
 `;
 
 export const Container = styled.section`
