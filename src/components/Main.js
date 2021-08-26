@@ -35,9 +35,9 @@ export default class Main extends Component {
     const data = new FormData();
     data.append('file', this.state.selectedFile);
 
-    // const url = process.env.PORT || 80;
+    const port = process.env.PORT || 3000;
     await axios
-      .post('/', data, {})
+      .post(`/${port}`, data, {})
       .then((res) => {
         toast.success('Sua imagem foi enviada com sucesso.');
         console.log(res.statusText);
