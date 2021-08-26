@@ -6,6 +6,7 @@
 /* eslint-disable no-console */
 /* eslint-disable react/state-in-constructor */
 import React, { Component } from 'react';
+import { toast } from 'react-toastify';
 import axios from '../services/axios';
 
 import Form from './Form';
@@ -38,6 +39,7 @@ export default class Main extends Component {
     await axios
       .post('/', data, {})
       .then((res) => {
+        toast.success('Sua imagem foi enviada');
         console.log(res.statusText);
       })
       .catch((err) => console.log(err));
