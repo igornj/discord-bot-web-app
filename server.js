@@ -14,24 +14,20 @@ app.use(cors());
 app.use('/', express.static('./build'));
 
 const upload = multer({ dest: 'uploads/' });
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 3000;
 
-app.post(
-  `https://discord-bot-upload.herokuapp.com/:${port}`,
-  upload.single('file'),
-  async (req, res) => {
-    const { file } = req;
-    const result = await uploadFile(file);
-    console.log(result);
+app.post('/', upload.single('file'), async (req, res) => {
+  const { file } = req;
+  const result = await uploadFile(file);
+  console.log(result);
 
-    if (res.status === 400) {
-      res.send('error');
-    } else {
-      res.send('POST request established');
-    }
+  if (res.status === 400) {
+    res.send('error');
+  } else {
+    res.send('POST request established');
   }
-);
+});
 
 app.listen(port, () => {
-  console.log(`App running on port: ${port}`);
+  console.log(`App running on port: ${port} http://localhost:${port}/`);
 });

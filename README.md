@@ -1,6 +1,12 @@
 "heroku-postbuild": "npm run build"
 "start": "serve -s build",
 "dev": "react-scripts start",
+ /* axios
+      .post(`https://discord-bot-upload.herokuapp.com/:${url}`, data, {})
+      .then((res) => {
+        console.log(res.statusText);
+      })
+      .catch((err) => console.log(err)); */
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

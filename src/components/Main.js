@@ -6,7 +6,7 @@
 /* eslint-disable no-console */
 /* eslint-disable react/state-in-constructor */
 import React, { Component } from 'react';
-import axios from 'axios';
+import axios from '../services/axios';
 
 import Form from './Form';
 
@@ -29,15 +29,14 @@ export default class Main extends Component {
     });
   }
 
-  handleSend(event) {
+  async handleSend(event) {
     event.preventDefault();
     const data = new FormData();
     data.append('file', this.state.selectedFile);
 
-    const url = process.env.PORT || 80;
-
-    axios
-      .post(`https://discord-bot-upload.herokuapp.com/:${url}`, data, {})
+    // const url = process.env.PORT || 80;
+    await axios
+      .post('/', data, {})
       .then((res) => {
         console.log(res.statusText);
       })
