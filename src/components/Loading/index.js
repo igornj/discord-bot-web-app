@@ -1,6 +1,8 @@
 import React from 'react';
+import ReactLoading from 'react-loading';
+
 import PropTypes from 'prop-types';
-import { Container } from './styled';
+import { Container, LoadingDiv } from './styled';
 
 export default function Loading({ isLoading }) {
   if (!isLoading) return <> </>;
@@ -8,7 +10,9 @@ export default function Loading({ isLoading }) {
   return (
     <Container>
       <div />
-      <span>Carregando...</span>
+      <LoadingDiv>
+        <ReactLoading type="spin" color="red" height={200} width={200} />
+      </LoadingDiv>
     </Container>
   );
 }

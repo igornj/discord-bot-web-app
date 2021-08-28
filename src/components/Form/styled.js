@@ -60,7 +60,7 @@ export const Container = styled.section`
   }
 
   img {
-    width: 200%;
+    width: 100%;
   }
 
   h4 {

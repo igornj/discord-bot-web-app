@@ -39,6 +39,7 @@ export default function Form() {
       .then((res) => {
         setIsLoading(false);
         toast.success('Sua imagem foi enviada com sucesso.');
+        setImageUrl('');
       })
       .catch((err) => {
         setIsLoading(false);
@@ -76,11 +77,11 @@ export default function Form() {
             Enviar
           </Button>
         </form>
+
+        <Paragraph>
+          *Após o envio, o bot já vai poder mostrar o seu rolê🤖.
+        </Paragraph>
       </Container>
-      <Paragraph>
-        Sim ta uma merda ainda, porém está funcionando e em breves ficará mais
-        meió. Agradeço a compreensão e VAMU CLANN!
-      </Paragraph>
     </>
   );
 }

@@ -8,22 +8,13 @@ export const Container = styled.div`
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  font-size: 30px;
+  background-color: rgba(0, 0, 0, 0.8);
+`;
 
-  div {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    background: rgba(0, 0, 0, 0.8);
-  }
-
-  span {
-    z-index: 2;
-  }
+export const LoadingDiv = styled.div`
+  margin-bottom: 9.6rem;
 `;
