@@ -15,7 +15,7 @@ app.use('/', express.static('./build'));
 
 const upload = multer({ dest: 'uploads/' });
 
-app.post('/', upload.single('file'), async (req, res) => {
+app.post('/', upload.array('file'), async (req, res) => {
   const { file } = req;
   await uploadFile(file);
   // console.log(result);
