@@ -7,10 +7,12 @@ import { toast } from 'react-toastify';
 import { Button, Title, Paragraph, Container } from './styled';
 
 import axios from '../../services/axios';
+import Loading from '../Loading';
 
 export default function Form() {
   const [image, setImage] = React.useState('');
   const [imageUrl, setImageUrl] = React.useState('');
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const handleChange = (event) => {
     const file = event.target.files[0];
@@ -30,12 +32,18 @@ export default function Form() {
 
     const data = new FormData();
     data.append('file', image);
+
+    setIsLoading(true);
     await axios
       .post('/', data, {})
       .then((res) => {
+        setIsLoading(false);
         toast.success('Sua imagem foi enviada com sucesso.');
       })
-      .catch((err) => toast.error('Houve algum erro ao enviar a imagem.'));
+      .catch((err) => {
+        setIsLoading(false);
+        toast.error('Houve algum erro ao enviar a imagem.');
+      });
   };
 
   return (
@@ -44,6 +52,7 @@ export default function Form() {
       <Paragraph>Envie seus rolês abaixo</Paragraph>
 
       <Container>
+        <Loading isLoading={isLoading} />
         <form action="#" method="POST" encType="multipart/form-data">
           <label htmlFor="file">
             {imageUrl ? <img src={imageUrl} alt="file" /> : 'Selecionar'}
