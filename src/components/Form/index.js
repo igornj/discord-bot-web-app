@@ -1,11 +1,43 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
-import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
 import { Button, Title, Paragraph, Container } from './styled';
 
-export default function Form({ handleChange, handleSend }) {
+import axios from '../../services/axios';
+
+export default function Form() {
+  const [image, setImage] = React.useState('');
+  const [imageUrl, setImageUrl] = React.useState('');
+
+  const handleChange = (event) => {
+    const file = event.target.files[0];
+    setImage(file);
+
+    const fotoURL = URL.createObjectURL(file);
+    setImageUrl(fotoURL);
+  };
+
+  const handleSend = async (event) => {
+    event.preventDefault();
+
+    if (image === null || image === '') {
+      toast.warn('Você precisa selecionar um arquivo');
+      return;
+    }
+
+    const data = new FormData();
+    data.append('file', image);
+    await axios
+      .post('/', data, {})
+      .then((res) => {
+        toast.success('Sua imagem foi enviada com sucesso.');
+      })
+      .catch((err) => toast.error('Houve algum erro ao enviar a imagem.'));
+  };
+
   return (
     <>
       <Title>Upper Moments</Title>
@@ -13,7 +45,10 @@ export default function Form({ handleChange, handleSend }) {
 
       <Container>
         <form action="#" method="POST" encType="multipart/form-data">
-          <input type="file" name="image" id="file" onChange={handleChange} />
+          <label htmlFor="file">
+            {imageUrl ? <img src={imageUrl} alt="file" /> : 'Selecionar'}
+            <input type="file" name="image" id="file" onChange={handleChange} />
+          </label>
 
           <h4>Regras</h4>
           <ul>
@@ -40,8 +75,3 @@ export default function Form({ handleChange, handleSend }) {
     </>
   );
 }
-
-Form.propTypes = {
-  handleChange: PropTypes.func,
-  handleSend: PropTypes.func,
-};

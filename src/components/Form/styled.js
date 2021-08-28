@@ -7,7 +7,7 @@ export const Button = styled.button`
   background-color: red;
   color: white;
   border-radius: 4px;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 
   &:hover {
     background-color: #d70000;
@@ -34,13 +34,13 @@ export const Container = styled.section`
   border-radius: 4px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
-  /*   input {
+  input {
     display: none;
   }
 
   label {
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -50,7 +50,18 @@ export const Container = styled.section`
     cursor: pointer;
     border-radius: 50%;
     overflow: hidden;
-  } */
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: #d70000;
+      border: 5px solid #d70000;
+      color: white;
+    }
+  }
+
+  img {
+    width: 200%;
+  }
 
   h4 {
     margin: 2.2rem 1rem 1rem 0;
