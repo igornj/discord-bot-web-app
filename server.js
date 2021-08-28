@@ -17,7 +17,7 @@ const upload = multer({ dest: 'uploads/' });
 
 app.post('/', upload.single('file'), async (req, res) => {
   const { file } = req;
-  const result = await uploadFile(file);
+  await uploadFile(file);
   // console.log(result);
 
   if (res.status === 400) {

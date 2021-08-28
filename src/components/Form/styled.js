@@ -7,6 +7,11 @@ export const Button = styled.button`
   background-color: red;
   color: white;
   border-radius: 4px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #d70000;
+  }
 `;
 
 export const Title = styled.h1`

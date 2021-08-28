@@ -32,9 +32,14 @@ export default class Main extends Component {
 
   async handleSend(event) {
     event.preventDefault();
+
+    if (this.state.selectedFile === null || this.state.selectedFile === '') {
+      toast.warn('Você precisa selecionar um arquivo');
+      return;
+    }
+
     const data = new FormData();
     data.append('file', this.state.selectedFile);
-
     await axios
       .post('/', data, {})
       .then((res) => {
@@ -49,16 +54,3 @@ export default class Main extends Component {
     );
   }
 }
-
-/* const url = 'http://localhost:3001/';
-axios(url, {
-  method: 'POST',
-  headers: {
-    'content-type': 'application/json',
-  },
-  data,
-})
-  .then((response) => console.log(response.statusText))
-  .catch((error) => {
-    throw error;
-  }); */
