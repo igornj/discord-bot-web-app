@@ -13,12 +13,18 @@ const app = express();
 app.use(cors());
 app.use('/', express.static('./build'));
 
+app.use('/login', (req, res) => {
+  res.send({
+    token: 'test123',
+  });
+});
+
 const upload = multer({ dest: 'uploads/' });
 
-app.post('/', upload.single('file'), async (req, res) => {
+app.post('/upload', upload.single('file'), async (req, res) => {
   const { file } = req;
   await uploadFile(file);
-  // console.log(result);
+  // console.log(file);
 
   if (res.status === 400) {
     res.send('error');
