@@ -18,12 +18,6 @@ export const Paragraph = styled.p`
   font-weight: bold;
 `;
 
-export const Paragraph2 = styled.p`
-  text-align: center;
-  margin-top: 0.1rem;
-  font-size: 0.9rem;
-`;
-
 export const Input = styled.input`
   padding: 0.5rem;
   border-radius: 5px;

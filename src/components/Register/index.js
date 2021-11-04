@@ -3,25 +3,19 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import validator from 'validator';
 import axios from 'axios';
 
-import {
-  Title,
-  Paragraph,
-  Paragraph2,
-  Form,
-  Input,
-  Label,
-  Button,
-} from './styled';
+import { Title, Paragraph, Form, Input, Label, Button } from './styled';
 import { Container } from '../../styles/GlobalStyles';
 import Loading from '../Loading';
 
-export default function Login() {
+export default function Register() {
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
   const history = useHistory();
@@ -34,24 +28,44 @@ export default function Login() {
       return;
     }
 
+    if (!validator.isEmail(email) || email.value === '') {
+      toast.warning('O e-mail digitado é inválido');
+      return;
+    }
+
     if (password.length < 6 || password.value === '') {
       toast.warning('A senha deve ter pelo menos 6 digitos');
       return;
     }
 
-    const loginData = {
+    /* const salt = crypto.randomBytes(16).toString('hex');
+    const hashPassword = crypto.pbkdf2(
+      password,
+      salt,
+      10000,
+      64,
+      'sha512',
+      (err, derivedKey) => {
+        if (err) throw err;
+        return derivedKey;
+      }
+    ); */
+
+    const registerData = {
       username,
+      email,
       password,
     };
 
     try {
       setIsLoading(true);
-      await axios.post('http://localhost:3001/login', loginData);
+      await axios
+        .post('http://localhost:3001/register', registerData)
+        .then((res) => toast.success('Sua conta foi criada'));
       setIsLoading(false);
-      toast.success('Login efetuado com sucesso');
-      history.push('/');
+      history.push('/login');
     } catch (error) {
-      toast.error('Usuário ou senha incorretos');
+      toast.error('Ocorreu um erro na criação da sua conta');
       setIsLoading(false);
     }
   };
@@ -60,20 +74,19 @@ export default function Login() {
     <>
       <Loading isLoading={isLoading} />
       <Title>Upper Moments</Title>
-      <Paragraph>Faça seu login abaixo</Paragraph>
+      <Paragraph>Crie sua conta abaixo</Paragraph>
       <Container>
         <Form method="POST" onSubmit={handleSubmit}>
-          <Label>Usuário</Label>
+          <Label>Usuário:</Label>
           <Input type="text" onChange={(e) => setUsername(e.target.value)} />
-          <Label>Senha</Label>
+          <Label>Email:</Label>
+          <Input type="text" onChange={(e) => setEmail(e.target.value)} />
+          <Label>Senha:</Label>
           <Input
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
           <Button type="submit">Entrar</Button>
-          <Paragraph2>
-            Não tem uma conta? <Link to="/register">Criar conta</Link>
-          </Paragraph2>
         </Form>
       </Container>
     </>

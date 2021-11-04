@@ -1,17 +1,13 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaSignOutAlt } from 'react-icons/fa';
 import { Container, Title, Paragraph, Button } from './styled';
-import Login from '../Login';
-import useToken from '../Login/useToken';
+import { upperRed } from '../../config/color';
 
 export default function HomePage() {
   // const [token, setToken] = React.useState();
 
-  const { token, setToken } = useToken();
-
-  if (!token) {
-    return <Login setToken={setToken} />;
-  }
   return (
     <>
       <Title>Upper Moments</Title>
@@ -32,6 +28,10 @@ export default function HomePage() {
             Galeria de Rolês
           </Link>
         </Button>
+
+        <Link to="/login">
+          <FaSignOutAlt size={23} color={upperRed} />
+        </Link>
       </Container>
     </>
   );
