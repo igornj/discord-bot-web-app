@@ -14,7 +14,7 @@ export default function Router() {
   return (
     <BrowserRouter>
       <Switch>
-        <PrivateRoute exact path="/" component={HomePage} />
+        <PrivateRoute exact path="/" component={HomePage} auth />
         <PrivateRoute exact path="/upload" component={Form} />
         <PrivateRoute exact path="/galeria" component={Galeria} />
         <Route exact path="/login" component={Login} />

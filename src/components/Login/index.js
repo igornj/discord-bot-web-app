@@ -2,10 +2,12 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+
+import React, { useState, useContext } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import jwt from 'jsonwebtoken';
 
 import {
   Title,
@@ -18,6 +20,10 @@ import {
 } from './styled';
 import { Container } from '../../styles/GlobalStyles';
 import Loading from '../Loading';
+import { Context } from '../../Context/AuthContext';
+
+// require('dotenv').config({ path: path.resolve(__dirname, './.env') });
+// D:\Documents\Cursos -Certificados - Faculdade\Programação\Projetos\Challenges\react01
 
 export default function Login() {
   const [username, setUsername] = useState('');
@@ -26,15 +32,18 @@ export default function Login() {
 
   const history = useHistory();
 
+  // const { authenticated, handleLogin } = useContext(Context);
+  // console.log('Login', authenticated);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (username.length < 5 || username.value === '') {
+    if (username.length < 5 || username === '') {
       toast.warning('O usuário deve ter pelo menos 5 caracteres');
       return;
     }
 
-    if (password.length < 6 || password.value === '') {
+    if (password.length < 6 || password === '') {
       toast.warning('A senha deve ter pelo menos 6 digitos');
       return;
     }

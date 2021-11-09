@@ -5,14 +5,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import GlobalStyle from './styles/GlobalStyles';
 
 import Routes from './routes';
+// import History from '';
+
+import { AuthProvider } from './Context/AuthContext';
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <GlobalStyle />
       <ToastContainer autoClose={5000} />
       <Routes />
-    </>
+    </AuthProvider>
   );
 }
 

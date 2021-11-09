@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import verifyToken from '../middleware/auth';
+import verifyToken from '../middleware/authMiddleware';
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+const PrivateRoute = ({ auth, component: Component, ...rest }) => {
   <Route
     {...rest}
     render={(props) => {
@@ -23,5 +23,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     }
   />; */
 };
+
+/* PrivateRoute.propTypes = {
+  auth: propTypes.bool.isRequired,
+  component: propTypes.element.isRequired,
+}; */
 
 export default PrivateRoute;
