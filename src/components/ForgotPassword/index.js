@@ -22,7 +22,7 @@ import { Container } from '../../styles/GlobalStyles';
 import Loading from '../Loading';
 import { useAuth } from '../../Context/AuthContext';
 
-export default function Login() {
+export default function ForgotPassword() {
   const [email, setEmail] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState(false);
@@ -59,7 +59,11 @@ export default function Login() {
       <Container>
         <Form method="POST" onSubmit={handleSubmit}>
           <Label>Email:</Label>
-          <Input type="text" onChange={(e) => setEmail(e.target.value)} />
+          <Input
+            type="text"
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Digite seu e-mail"
+          />
 
           <Button type="submit">Resetar senha</Button>
           {status ? (
