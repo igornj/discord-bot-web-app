@@ -40,7 +40,7 @@ export const Label = styled.label`
 
 export const Button = styled.button`
   padding: 10px 20px;
-  margin: 1.5rem 1rem;
+  margin: 1rem 1rem 0.3rem 1rem;
   background-color: red;
   color: white;
   border-radius: 4px;
@@ -49,4 +49,11 @@ export const Button = styled.button`
   &:hover {
     background-color: #d70000;
   }
+`;
+
+export const Button2 = styled.button`
+  text-decoration: none;
+  background: none;
+  color: blue;
+  margin-bottom: 1rem;
 `;

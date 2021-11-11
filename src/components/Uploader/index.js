@@ -1,10 +1,15 @@
+/* eslint-disable react/button-has-type */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import { toast } from 'react-toastify';
-import { Button, Title, Paragraph, Container } from './styled';
+import { FaSignOutAlt } from 'react-icons/fa';
+import { Link, useHistory } from 'react-router-dom';
+import { useAuth } from '../../Context/AuthContext';
+import { upperRed } from '../../config/color';
+import { Button, Title, Paragraph, Container, Nav } from './styled';
 
 import axios from '../../services/axios';
 import Loading from '../Loading';
@@ -13,6 +18,9 @@ export default function Form() {
   const [image, setImage] = React.useState('');
   const [imageUrl, setImageUrl] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
+  const { logout, currentUser } = useAuth();
+
+  const history = useHistory();
 
   const handleChange = (event) => {
     const file = event.target.files[0];
@@ -35,7 +43,7 @@ export default function Form() {
 
     setIsLoading(true);
     await axios
-      .post('/', data, {})
+      .post('/upload', data, {})
       .then((res) => {
         setIsLoading(false);
         toast.success('Sua imagem foi enviada com sucesso.');
@@ -47,9 +55,33 @@ export default function Form() {
       });
   };
 
+  const handleLogout = (e) => {
+    e.preventDefault();
+    try {
+      setIsLoading(true);
+      logout();
+      toast.success('Logout feito com sucesso');
+      setIsLoading(false);
+      history.push('/login');
+    } catch (err) {
+      setIsLoading(false);
+      toast.error('Ocorreu algum erro ao fazer logout');
+    }
+  };
+
   return (
     <>
-      <Title>Upper Moments</Title>
+      <Nav>
+        <p>{currentUser.email}</p>
+        <Link to="/login">
+          <button style={{ background: 'none' }} onClick={handleLogout}>
+            <FaSignOutAlt size={30} color={upperRed} />
+          </button>
+        </Link>
+      </Nav>
+      <Link to="/">
+        <Title>Upper Moments</Title>
+      </Link>
       <Paragraph>Envie seus rolês abaixo</Paragraph>
 
       <Container>
@@ -79,7 +111,7 @@ export default function Form() {
         </form>
 
         <Paragraph>
-          *Após o envio, o bot já vai poder mostrar o seu rolê🤖.
+          Após o envio, o bot já vai poder mostrar o seu rolê🤖.
         </Paragraph>
       </Container>
     </>

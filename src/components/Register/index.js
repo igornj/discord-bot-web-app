@@ -3,65 +3,50 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import validator from 'validator';
-import axios from 'axios';
 
-import { Title, Paragraph, Form, Input, Label, Button } from './styled';
+import { useAuth } from '../../Context/AuthContext';
+
+import {
+  Title,
+  Paragraph,
+  Paragraph2,
+  Form,
+  Input,
+  Label,
+  Button,
+} from './styled';
 import { Container } from '../../styles/GlobalStyles';
 import Loading from '../Loading';
 
 export default function Register() {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [password2, setPassword2] = useState();
   const [isLoading, setIsLoading] = useState(false);
+
+  const { register } = useAuth();
 
   const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (username.length < 5 || username.value === '') {
-      toast.warning('O usuário deve ter pelo menos 5 caracteres');
+    if (password !== password2) {
+      toast.warning('As senhas digitadas não são iguais');
       return;
     }
 
-    if (!validator.isEmail(email) || email.value === '') {
-      toast.warning('O e-mail digitado é inválido');
+    if (password < 6) {
+      toast.warning('A senha precisa ter no minimo 6 digitos');
       return;
     }
-
-    if (password.length < 6 || password.value === '') {
-      toast.warning('A senha deve ter pelo menos 6 digitos');
-      return;
-    }
-
-    /* const salt = crypto.randomBytes(16).toString('hex');
-    const hashPassword = crypto.pbkdf2(
-      password,
-      salt,
-      10000,
-      64,
-      'sha512',
-      (err, derivedKey) => {
-        if (err) throw err;
-        return derivedKey;
-      }
-    ); */
-
-    const registerData = {
-      username,
-      email,
-      password,
-    };
 
     try {
       setIsLoading(true);
-      await axios
-        .post('http://localhost:3001/register', registerData)
-        .then((res) => toast.success('Sua conta foi criada'));
+      await register(email, password);
+      toast.success('Sua conta foi criada');
       setIsLoading(false);
       history.push('/login');
     } catch (error) {
@@ -77,16 +62,35 @@ export default function Register() {
       <Paragraph>Crie sua conta abaixo</Paragraph>
       <Container>
         <Form method="POST" onSubmit={handleSubmit}>
-          <Label>Usuário:</Label>
-          <Input type="text" onChange={(e) => setUsername(e.target.value)} />
           <Label>Email:</Label>
-          <Input type="text" onChange={(e) => setEmail(e.target.value)} />
+          <Input
+            type="text"
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Digite seu e-mail"
+          />
           <Label>Senha:</Label>
           <Input
             type="password"
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="Digite sua senha"
           />
-          <Button type="submit">Entrar</Button>
+          <Label>Confirmar senha:</Label>
+          <Input
+            type="password"
+            onChange={(e) => setPassword2(e.target.value)}
+            placeholder="Repita sua senha"
+          />
+          <Button disable={isLoading} type="submit">
+            Criar conta
+          </Button>
+
+          <Paragraph2>
+            Você já tem uma conta?
+            <Link to="/login" style={{ color: 'blue' }}>
+              {' '}
+              Faça o login
+            </Link>
+          </Paragraph2>
         </Form>
       </Container>
     </>

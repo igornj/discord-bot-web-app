@@ -1,27 +1,64 @@
-/* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
-import React, { createContext, useState } from 'react';
-import axios from 'axios';
+import React, { useContext, useState, useEffect } from 'react';
+import propTypes from 'prop-types';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  sendPasswordResetEmail,
+} from 'firebase/auth';
+import { auth } from '../services/firebase-config';
 
-const Context = createContext();
+import Loading from '../components/Loading';
 
-function AuthProvider({ children }) {
-  const [authenticated, setAuthenticated] = useState(false);
+const AuthContext = React.createContext();
 
-  async function handleLogin() {
-    const { data: token } = await axios.post('http://localhost:3001/login');
-    console.log(token);
-    localStorage.setItem('token', JSON.stringify(token));
-    axios.defaults.headers.Authorization = `Bearer ${token}`;
-    setAuthenticated(true);
-  }
-
-  return (
-    <Context.Provider value={{ authenticated, handleLogin }}>
-      {children}
-    </Context.Provider>
-  );
+export function useAuth() {
+  return useContext(AuthContext);
 }
 
-export { AuthProvider, Context };
+export function AuthProvider({ children }) {
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      setCurrentUser(user);
+      setIsLoading(false);
+    });
+  }, []);
+
+  if (isLoading) {
+    return <Loading isLoading={isLoading} />;
+  }
+
+  function register(email, password) {
+    return createUserWithEmailAndPassword(auth, email, password);
+  }
+
+  function login(email, password) {
+    return signInWithEmailAndPassword(auth, email, password);
+  }
+
+  function logout() {
+    return signOut(auth);
+  }
+
+  function forgotPassword(email) {
+    return sendPasswordResetEmail(auth, email);
+  }
+
+  const value = {
+    currentUser,
+    login,
+    register,
+    logout,
+    forgotPassword,
+  };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+}
+
+AuthProvider.propTypes = {
+  children: propTypes.node.isRequired,
+};

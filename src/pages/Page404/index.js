@@ -1,13 +1,16 @@
 import React from 'react';
 
-import GlobalStyles, { Container } from '../../styles/GlobalStyles';
-import { Title } from './styled';
+import GlobalStyles from '../../styles/GlobalStyles';
+import { Title, Title2, Container } from './styled';
 
 export default function Page404() {
   return (
-    <Container>
-      <GlobalStyles />
-      <Title>Essa página não existe</Title>
-    </Container>
+    <>
+      <Title2>404</Title2>
+      <Container>
+        <GlobalStyles />
+        <Title>Essa página não existe</Title>
+      </Container>
+    </>
   );
 }

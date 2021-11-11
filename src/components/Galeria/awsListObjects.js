@@ -9,10 +9,10 @@ require('dotenv').config();
 
 config.update({ region: 'us-east-2' });
 
-const ACCESS_KEY_ID = process.env.aws_access_key_id;
-const SECRET_ACCESS_KEY = process.env.aws_secret_access_key;
-const BUCKET_NAME = process.env.aws_bucket_name;
-const REGION = process.env.aws_bucket_region;
+const ACCESS_KEY_ID = 'AKIAX23VRQJU6G5HKBHL';
+const SECRET_ACCESS_KEY = '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';
+const BUCKET_NAME = 'upperphotos';
+const REGION = 'us-east-2';
 
 const s3 = new S3({
   accessKeyId: ACCESS_KEY_ID,

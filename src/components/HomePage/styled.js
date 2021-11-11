@@ -2,8 +2,7 @@ import styled from 'styled-components';
 
 export const Button = styled.button`
   display: block;
-  padding: 10px 20px;
-  width: 800px;
+  width: 400px;
   margin: 1.5rem 1rem;
   background-color: red;
   color: white;
@@ -33,7 +32,25 @@ export const Container = styled.section`
   align-items: center;
   max-width: 80%;
   background: #fff;
-  margin: 30px auto;
+  margin: 15px auto;
   padding: 30px;
   border-radius: 4px;
+`;
+
+export const Nav = styled.div`
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin: 0.5rem auto;
+
+  p {
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  button {
+    display: block;
+    margin: -6px 5px;
+    padding: 0.5rem;
+  }
 `;

@@ -26,6 +26,24 @@ export const Paragraph = styled.p`
   font-weight: bold;
 `;
 
+export const Nav = styled.div`
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin: 0.5rem auto;
+
+  p {
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  button {
+    display: block;
+    margin: -6px 5px;
+    padding: 0.5rem;
+  }
+`;
+
 export const Container = styled.section`
   max-width: 360px;
   background: #fff;

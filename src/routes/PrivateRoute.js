@@ -1,32 +1,29 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import propTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
-import verifyToken from '../middleware/authMiddleware';
+// import verifyToken from '../middleware/authMiddleware';
+import { useAuth } from '../Context/AuthContext';
 
-const PrivateRoute = ({ auth, component: Component, ...rest }) => {
-  <Route
-    {...rest}
-    render={(props) => {
-      return verifyToken() ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{ pathname: '/login', state: { from: props.location } }}
-        />
-      );
-    }}
-  />;
-  /*   <Route
-    {...rest}
-    render={(props) =>
-      verifyToken() ? <Component {...props} /> : <Redirect to="/login" />
-    }
-  />; */
+function PrivateRoute({ component: Component, ...rest }) {
+  const { currentUser } = useAuth();
+  return (
+    <Route
+      {...rest}
+      render={(props) => {
+        return currentUser ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={{ pathname: '/login' }} />
+        );
+      }}
+    />
+  );
+}
+
+PrivateRoute.propTypes = {
+  component: propTypes.any.isRequired,
 };
-
-/* PrivateRoute.propTypes = {
-  auth: propTypes.bool.isRequired,
-  component: propTypes.element.isRequired,
-}; */
 
 export default PrivateRoute;
