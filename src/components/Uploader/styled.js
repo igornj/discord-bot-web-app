@@ -8,10 +8,18 @@ export const Button = styled.button`
   color: white;
   border-radius: 4px;
   transition: all 0.2s ease;
+  cursor: pointer;
 
-  &:hover {
-    background-color: #d70000;
+  :disabled,
+  [disabled] {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
   }
+
+  /* &:hover {
+    background-color: #d70000;
+  } */
 `;
 
 export const Title = styled.h1`

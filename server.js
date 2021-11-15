@@ -1,5 +1,8 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
+
+import * as functions from 'firebase-functions';
 
 require('dotenv').config();
 
@@ -18,3 +21,5 @@ const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`Server running on port: ${port}`);
 });
+
+exports.app = functions.https.onRequest(app);

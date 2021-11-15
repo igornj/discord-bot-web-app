@@ -46,7 +46,7 @@ export default function Form() {
       .post('/upload', data, {})
       .then((res) => {
         setIsLoading(false);
-        toast.success('Sua imagem foi enviada com sucesso.');
+        toast.error('Sua imagem foi enviada com sucesso.');
         setImageUrl('');
       })
       .catch((err) => {
@@ -101,6 +101,7 @@ export default function Form() {
           </ul>
 
           <Button
+            disabled
             type="submit"
             name="submit"
             onClick={handleSend}
@@ -111,9 +112,11 @@ export default function Form() {
         </form>
 
         <Paragraph>
-          Após o envio, o bot já vai poder mostrar o seu rolê🤖.
+          Por conta de bugs o Envio de arquivos foi desabiltiado por hora😒
         </Paragraph>
       </Container>
     </>
   );
 }
+
+// Após o envio, o bot já vai poder mostrar o seu rolê🤖.

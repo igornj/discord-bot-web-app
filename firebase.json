@@ -9,8 +9,13 @@
     "rewrites": [
       {
         "source": "**",
+        "function": "upload",
         "destination": "/index.html"
       }
     ]
+  },
+  "functions": {
+    "source": "functions"
   }
 }
+
