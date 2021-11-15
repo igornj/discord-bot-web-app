@@ -10,7 +10,7 @@ const { uploadFile } = require('./awsUploadObjects');
 const router = express.Router();
 
 const upload = multer({ dest: 'uploads/' });
-router.post('/upload', upload.single('file'), async (req, res) => {
+router.post('/', upload.single('file'), async (req, res) => {
   try {
     const { file } = req;
     await uploadFile(file);
