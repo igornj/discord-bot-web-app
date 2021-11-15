@@ -101,7 +101,6 @@ export default function Form() {
           </ul>
 
           <Button
-            disabled
             type="submit"
             name="submit"
             onClick={handleSend}
