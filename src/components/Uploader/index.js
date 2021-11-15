@@ -46,7 +46,7 @@ export default function Form() {
       .post('/upload', data, {})
       .then((res) => {
         setIsLoading(false);
-        toast.error('Sua imagem foi enviada com sucesso.');
+        toast.success('Sua imagem foi enviada com sucesso.');
         setImageUrl('');
       })
       .catch((err) => {
