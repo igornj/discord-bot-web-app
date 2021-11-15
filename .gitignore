@@ -2,7 +2,4 @@ node_modules
 .env
 uploads
 Backups
-.firebase
-functions
-.firebaserc
-firebase.json
+
