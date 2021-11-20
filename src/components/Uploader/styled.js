@@ -12,14 +12,13 @@ export const Button = styled.button`
   &:hover {
     background-color: #d70000;
   }
-`;
-/*
   :disabled,
   [disabled] {
     border: 1px solid #999999;
     background-color: #cccccc;
     color: #666666;
-  } */
+  }
+`;
 
 export const Title = styled.h1`
   text-align: center;

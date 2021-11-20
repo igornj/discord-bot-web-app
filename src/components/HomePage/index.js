@@ -40,7 +40,7 @@ export default function HomePage() {
       <Container>
         <Button>
           <Link
-            to="/api/upload"
+            to="/upload"
             style={{
               textDecoration: 'none',
               color: 'white',

@@ -43,7 +43,7 @@ export default function Form() {
 
     setIsLoading(true);
     await axios
-      .post('/api/upload', data, {})
+      .post('/upload', data, {})
       .then((res) => {
         setIsLoading(false);
         toast.success('Sua imagem foi enviada com sucesso.');
@@ -101,6 +101,7 @@ export default function Form() {
           </ul>
 
           <Button
+            disabled
             type="submit"
             name="submit"
             onClick={handleSend}
@@ -109,6 +110,10 @@ export default function Form() {
             Enviar
           </Button>
         </form>
+
+        <Paragraph>
+          Por conta de bugs o Envio de arquivos foi desabiltiado por hora😒
+        </Paragraph>
       </Container>
     </>
   );
