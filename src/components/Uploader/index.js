@@ -109,10 +109,6 @@ export default function Form() {
             Enviar
           </Button>
         </form>
-
-        <Paragraph>
-          Por conta de bugs o Envio de arquivos foi desabiltiado por hora😒
-        </Paragraph>
       </Container>
     </>
   );
