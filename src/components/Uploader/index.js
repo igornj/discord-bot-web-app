@@ -43,7 +43,7 @@ export default function Form() {
 
     setIsLoading(true);
     await axios
-      .post('/upload', data, {})
+      .post('/api/upload', data, {})
       .then((res) => {
         setIsLoading(false);
         toast.success('Sua imagem foi enviada com sucesso.');
