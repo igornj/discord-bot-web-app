@@ -5,7 +5,7 @@ require('dotenv').config();
 const express = require('express');
 const multer = require('multer');
 
-const { uploadFile } = require('../awsUploadObjects');
+const { uploadFile } = require('./awsUploadObjects');
 
 const router = express.Router();
 
