@@ -109,11 +109,9 @@ export default function Form() {
         </form>
 
         <Paragraph>
-          Por conta de bugs o Envio de arquivos foi desabiltiado por hora😒
+          Após o envio, o bot já vai poder mostrar o seu rolê🤖.
         </Paragraph>
       </Container>
     </>
   );
 }
-
-// Após o envio, o bot já vai poder mostrar o seu rolê🤖.
