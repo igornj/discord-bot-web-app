@@ -95,7 +95,9 @@ export default function Form() {
           <h4>Regras</h4>
           <ul>
             <li>1 - Envie somente fotos de rolês do clan 👌</li>
-            <li>2 - Arquivos de video ou outros não serão armazenados 👵</li>
+            <li>
+              2 - Arquivos de video ainda não são suportados, apenas imagens 👵
+            </li>
           </ul>
 
           <Button
