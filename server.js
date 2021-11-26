@@ -18,28 +18,28 @@ const app = express();
 //   optionSuccessStatus: 200,
 // };
 
-app.use((req, res, next) => {
-  // Website you wish to allow to connect
-  res.setHeader(
-    'Access-Control-Allow-Origin',
-    'https://discord-bot-web-app.herokuapp.com'
-  );
+// app.use((req, res, next) => {
+//   // Website you wish to allow to connect
+//   res.setHeader(
+//     'Access-Control-Allow-Origin',
+//     'https://discord-bot-web-app.herokuapp.com'
+//   );
 
-  // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+//   // Request methods you wish to allow
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
 
-  // Request headers you wish to allow
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-Requested-With,content-type'
-  );
+//   // Request headers you wish to allow
+//   res.setHeader(
+//     'Access-Control-Allow-Headers',
+//     'X-Requested-With,content-type'
+//   );
 
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader('Access-Control-Allow-Credentials', false);
-});
+//   // Set to true if you need the website to include cookies in the requests sent
+//   // to the API (e.g. in case you use sessions)
+//   res.setHeader('Access-Control-Allow-Credentials', false);
+// });
 
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 app.use(routes);
 app.use(express.static(path.join(__dirname, 'build')));
