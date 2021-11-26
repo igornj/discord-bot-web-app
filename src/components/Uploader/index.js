@@ -94,10 +94,8 @@ export default function Form() {
 
           <h4>Regras</h4>
           <ul>
-            <li>
-              1 - Não seja babaquinha, envie somente fotos de rolês do clan 👌
-            </li>
-            <li>2 - Sua mãe é minha 👵</li>
+            <li>1 - Envie somente fotos de rolês do clan 👌</li>
+            <li>2 - Arquivos de video ou outros não serão armazenados 👵</li>
           </ul>
 
           <Button
