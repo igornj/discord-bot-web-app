@@ -13,7 +13,7 @@ const routes = require('./routes');
 const app = express();
 
 const corsOptions = {
-  origin: '*',
+  origin: 'https://discord-bot-web-app.herokuapp.com',
   credentials: true, // access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
